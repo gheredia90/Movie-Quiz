@@ -1,13 +1,9 @@
-<%sample_year = @movies_info.sample[:year]%>
-<h3>Which one was filmed in <%=sample_year%>?
-</h3>
+<h3><%=@question_selector.question[:body] %> <%=@value%>?</h3>
 		<div class="row">		
 			<% @movies_info[0,3].each do |movie| %>
 				<div class="col-sm-4"> 
-					<a href="">
-						<% message = movie[:year] == sample_year ? "Correct!" : "Wrong choice!"%>
+						<% message = @question_selector.generate_message(movie, @value)%>
 						<img src=<%= movie[:poster]%> class="img-responsive" alt=<%= movie[:title]%> onClick="alert('<%=message %>')">
-					</a>
 				</div>
 			<% end %>
  		</div>
@@ -15,10 +11,8 @@
  		<div class="row">		
 			<% @movies_info[3,3].each do |movie| %>
 				<div class="col-sm-4"> 
-					<a href="">
-						<% message = movie[:year] == sample_year ? "Correct!" : "Wrong choice!"%>
+						<% message = @question_selector.generate_message(movie, @value)%>
 						<img src=<%= movie[:poster]%> class="img-responsive" alt=<%= movie[:title]%> onClick="alert('<%=message %>')">
-					</a>
 				</div>
 			<% end %>
  		</div>
@@ -26,10 +20,8 @@
  		<div class="row">		
 			<% @movies_info[6,3].each do |movie| %>
 				<div class="col-sm-4"> 
-					<a href="">
-						<% message = movie[:year] == sample_year ? "Correct!" : "Wrong choice!"%>
+						<% message = @question_selector.generate_message(movie, @value)%>
 						<img src=<%= movie[:poster]%> class="img-responsive" alt=<%= movie[:title]%> onClick="alert('<%=message %>')">
-					</a>
 				</div>
 			<% end %>
  		</div>

@@ -4,10 +4,12 @@ require 'uri'
 require 'pry'
 require_relative('./lib/movie_finder.rb')
 require_relative('./lib/user.rb')
+require_relative('./lib/question_selector.rb')
 
 enable(:sessions)
 
 movies = MovieFinder.new
+question_selector = QuestionSelector.new
 movies_info = []
 message = ""
 
@@ -26,6 +28,8 @@ end
 
 get '/movies' do
 	@movies_info = movies_info
+	@question_selector = question_selector
+	@value = question_selector.generate_value(movies_info)	
 	erb :movies, layout: :sinatra_layout
 end
 
